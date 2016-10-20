@@ -53,6 +53,7 @@ import cucumber.api.java.en.Then;
  * @see <a href="https://github.com/PerfectoCode/Quantum/wiki/BDD-Implementation">BDD Implementation</a>
  * @see <a href="https://community.perfectomobile.com/series/20208/posts/1072062">Switching contexts</a>
  */
+@QAFTestStepProvider
 public class PerfectoCucumberSteps {
 	   //TODO should make new driver every call?
     private static WebDriverTestBase webDriverTestBase = new WebDriverTestBase();
