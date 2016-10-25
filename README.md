@@ -1,5 +1,14 @@
 # qaf-perfecto-support
-Support project that provides ready to use steps for perfecto mobile cloud and report integration
+Support project that provides ready to use steps for perfecto mobile cloud and report integration.
+It will enable reportium inegration and will provide utility methods and ready to use stpes for behavior driven developement.
+
+Properties:
+
+ name              | posible value       | description 
+ -----------------|---------------------|--------------
+ perfecto.default.driver.listener|`true`/`false`|enable or desable default driver listner (default is `true`}
+ driver.pluginType | `eclipse` or `intellij` | set this property appropriate value to use device opened in IDE. Will work only if driver listener is enabled and provided same device id in capability
+
 # Usage
 ## Maven
 
