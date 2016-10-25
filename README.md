@@ -4,8 +4,12 @@ It will enable reportium inegration and will provide utility methods and ready t
 
 Properties:
 
- name              | posible value       | description 
+ name             | posible value       | description 
  -----------------|---------------------|--------------
+ project.name| your project name| project name to set in reportium default is xml suite name
+ project.ver| version of the project| project version to set in reportium, default is 1.0
+ JOB_NAME|CI job name|to set in reportium
+ BUILD_NUMBER|CI build number|build number to set in reportium
  perfecto.default.driver.listener|`true`/`false`|enable or desable default driver listner (default is `true`}
  driver.pluginType | `eclipse` or `intellij` | set this property appropriate value to use device opened in IDE. Will work only if driver listener is enabled and provided same device id in capability
 
