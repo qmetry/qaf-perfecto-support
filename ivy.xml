@@ -28,5 +28,7 @@
         <dependency org="com.perfectomobile" name="intellij-connector" rev="latest.integration"/>
         
 		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.21"/>
+		<dependency org="info.cukes" name="cucumber-java" rev="1.2.5"/>
+
 	</dependencies>
 </ivy-module>
