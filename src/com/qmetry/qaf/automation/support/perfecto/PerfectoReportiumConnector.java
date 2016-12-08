@@ -71,34 +71,58 @@ public class PerfectoReportiumConnector extends QAFTestStepAdapter
 
 	@Override
 	public void onTestStart(ITestResult testResult) {
-		if (getBundle().getString("remote.server", "").contains("perfecto")) {
+		try {
+			if (getBundle().getString("remote.server", "").contains("perfecto")) {
 
-			ReportiumClient reportClient = getReportiumClient(testResult);
-			TestContext context = new TestContext(testResult.getMethod().getGroups());
+				ReportiumClient reportClient = getReportiumClient(testResult);
+				TestContext context = new TestContext(testResult.getMethod().getGroups());
 
-			reportClient.testStart(testResult.getMethod().getMethodName(), context);
-			addReportLink(testResult, reportClient.getReportUrl());
+				reportClient.testStart(testResult.getMethod().getMethodName(), context);
+				addReportLink(testResult, reportClient.getReportUrl());
+			}
+		} catch (Error e) {
+			// ignore...
+		} catch (Exception e) {
+			// ignore
 		}
 	}
 
 	@Override
 	public void beforExecute(StepExecutionTracker stepExecutionTracker) {
-		logTestStep(stepExecutionTracker.getStep().getDescription());
+		try {
+			logTestStep(stepExecutionTracker.getStep().getDescription());
+		} catch (Error e) {
+			// ignore...
+		} catch (Exception e) {
+			// ignore
+		}
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult testResult) {
-		ReportiumClient client = getReportiumClient();
-		if (null != client)
-			client.testStop(TestResultFactory.createSuccess());
+		try {
+			ReportiumClient client = getReportiumClient();
+			if (null != client)
+				client.testStop(TestResultFactory.createSuccess());
+		} catch (Error e) {
+			// ignore...
+		} catch (Exception e) {
+			// ignore
+		}
 	}
 
 	@Override
 	public void onTestFailure(ITestResult testResult) {
-		ReportiumClient client = getReportiumClient();
-		if (null != client)
-			client.testStop(TestResultFactory.createFailure("An error occurred",
-					testResult.getThrowable()));
+		try {
+			ReportiumClient client = getReportiumClient();
+			if (null != client)
+				client.testStop(TestResultFactory.createFailure("An error occurred",
+						testResult.getThrowable()));
+		} catch (Error e) {
+			// ignore...
+		} catch (Exception e) {
+			// ignore
+		}
 	}
 
 	@Override
@@ -108,32 +132,45 @@ public class PerfectoReportiumConnector extends QAFTestStepAdapter
 
 	@Override
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-		onTestFailure(result);
+		try {
+			onTestFailure(result);
+		} catch (Error e) {
+			// ignore...
+		} catch (Exception e) {
+			// ignore
+		}
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public void onStart(ITestContext context) {
-		if (getBundle().getString("remote.server", "").contains("perfecto")) {
+		try {
+			if (getBundle().getString("remote.server", "").contains("perfecto")) {
 
-			List<String> stepListeners =
-					getBundle().getList(ApplicationProperties.TESTSTEP_LISTENERS.key);
-			if (!stepListeners.contains(this.getClass().getName())) {
-				stepListeners.add(this.getClass().getName());
-				getBundle().setProperty(ApplicationProperties.TESTSTEP_LISTENERS.key,
-						stepListeners);
-			}
+				List<String> stepListeners =
+						getBundle().getList(ApplicationProperties.TESTSTEP_LISTENERS.key);
+				if (!stepListeners.contains(this.getClass().getName())) {
+					stepListeners.add(this.getClass().getName());
+					getBundle().setProperty(ApplicationProperties.TESTSTEP_LISTENERS.key,
+							stepListeners);
+				}
 
-			if (getBundle().getBoolean("perfecto.default.driver.listener", true)) {
-				List<String> driverListeners = getBundle()
-						.getList(ApplicationProperties.WEBDRIVER_COMMAND_LISTENERS.key);
-				if (!driverListeners.contains(PerfectoDriverListener.class.getName())) {
-					driverListeners.add(PerfectoDriverListener.class.getName());
-					getBundle().setProperty(
-							ApplicationProperties.WEBDRIVER_COMMAND_LISTENERS.key,
-							driverListeners);
+				if (getBundle().getBoolean("perfecto.default.driver.listener", true)) {
+					List<String> driverListeners = getBundle().getList(
+							ApplicationProperties.WEBDRIVER_COMMAND_LISTENERS.key);
+					if (!driverListeners
+							.contains(PerfectoDriverListener.class.getName())) {
+						driverListeners.add(PerfectoDriverListener.class.getName());
+						getBundle().setProperty(
+								ApplicationProperties.WEBDRIVER_COMMAND_LISTENERS.key,
+								driverListeners);
+					}
 				}
 			}
+		} catch (Error e) {
+			// ignore...
+		} catch (Exception e) {
+			// ignore
 		}
 	}
 
@@ -145,8 +182,10 @@ public class PerfectoReportiumConnector extends QAFTestStepAdapter
 	public static void logTestStep(String message) {
 		try {
 			getReportiumClient().testStep(message);
-		} catch (Exception e) {
+		} catch (Error e) {
 			// ignore...
+		} catch (Exception e) {
+			// ignore
 		}
 	}
 
@@ -185,8 +224,14 @@ public class PerfectoReportiumConnector extends QAFTestStepAdapter
 	}
 
 	private void addReportLink(ITestResult result, String url) {
-		((TestNGScenario) result.getMethod()).getMetaData().put("Perfecto-report",
-				"<a href=\"" + url + "\" target=\"_blank\">view</a>");
+		try {
+			((TestNGScenario) result.getMethod()).getMetaData().put("Perfecto-report",
+					"<a href=\"" + url + "\" target=\"_blank\">view</a>");
+		} catch (Error e) {
+			// ignore...
+		} catch (Exception e) {
+			// ignore
+		}
 	}
 
 }

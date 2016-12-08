@@ -4,7 +4,7 @@
 package com.qmetry.qaf.automation.support.perfecto;
 
 import static com.qmetry.qaf.automation.core.ConfigurationManager.getBundle;
-import com.perfectomobile.httpclient.Credentials;
+
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -30,7 +30,6 @@ import java.util.Map.Entry;
 
 import org.apache.commons.configuration.ConfigurationConverter;
 import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.SubnodeConfiguration;
 import org.hamcrest.Matchers;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.OutputType;

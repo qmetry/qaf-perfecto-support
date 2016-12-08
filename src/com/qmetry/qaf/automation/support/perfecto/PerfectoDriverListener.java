@@ -30,7 +30,6 @@
 package com.qmetry.qaf.automation.support.perfecto;
 
 import static com.qmetry.qaf.automation.core.ConfigurationManager.getBundle;
-import static com.qmetry.qaf.automation.step.PerfectoMobileSteps.closeApplication;
 import static com.qmetry.qaf.automation.support.perfecto.PerfectoIDEConnectorUtil.getExecutionIdCapability;
 
 import org.openqa.selenium.Capabilities;
@@ -58,8 +57,14 @@ public class PerfectoDriverListener extends QAFWebDriverCommandAdapter {
 				if (StringUtil.isNotBlank(appName) && StringUtil.isBlank((String) driver
 						.getCapabilities().getCapability("eclipseExecutionId"))) {
 					try {
-						closeApplication(appName);
+						// open application command
+						String command = "mobile:application:close";
+						// open application
+						driver.executeScript(command, ImmutableMap.of("name", appName));
+					} catch (Error e) {
+						e.printStackTrace();
 					} catch (Exception e) {
+						e.printStackTrace();
 					}
 				}
 				driver.close();
@@ -68,7 +73,6 @@ public class PerfectoDriverListener extends QAFWebDriverCommandAdapter {
 			}
 		}
 	}
-
 
 	@Override
 	public void beforeInitialize(Capabilities desiredCapabilities) {
@@ -86,12 +90,23 @@ public class PerfectoDriverListener extends QAFWebDriverCommandAdapter {
 	public void onInitialize(QAFExtendedWebDriver driver) {
 		String appName =
 				(String) driver.getCapabilities().getCapability("applicationName");
-		if (StringUtil.isNotBlank(appName))
+		if (StringUtil.isNotBlank(appName)) {
+			try {
+				// open application command
+				String command = "mobile:application:close";
+				// open application
+				driver.executeScript(command, ImmutableMap.of("name", appName));
+			} catch (Error e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			openApplication(driver, appName);
+		}
 	}
 
 	private void openApplication(QAFExtendedWebDriver driver, String appName) {
-		PerfectoReportiumConnector.logTestStep("open '"+appName +"' application");
+		PerfectoReportiumConnector.logTestStep("open '" + appName + "' application");
 		// open application command
 		String command = "mobile:application:open";
 		// open application

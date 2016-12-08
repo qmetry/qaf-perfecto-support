@@ -37,8 +37,6 @@ import com.google.common.collect.ImmutableMap;
 import com.qmetry.qaf.automation.ui.WebDriverTestBase;
 import com.qmetry.qaf.automation.ui.webdriver.QAFExtendedWebDriver;
 
-import cucumber.api.java.en.Given;
-
 /**
  * com.qmetry.qaf.automation.step.PerfectMobileSteps.java
  * This class defines steps and methods that can be used for perfecto-mobile.
