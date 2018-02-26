@@ -1,3 +1,5 @@
+**NOTE: Please start using [Quantum](https://github.com/Project-Quantum/Quantum) library instead. [Quantum](https://github.com/Project-Quantum/Quantum) is replacement of this support project.**
+
 # qaf-perfecto-support
 Support project that provides ready to use steps for perfecto mobile cloud and report integration.
 It will enable reportium inegration and will provide utility methods and ready to use stpes for behavior driven developement.
